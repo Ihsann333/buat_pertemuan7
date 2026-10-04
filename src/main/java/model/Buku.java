@@ -8,12 +8,13 @@ package model;
  *
  * @author loq
  */
-public class Buku {
+public abstract class Buku {
     private final String idBuku;
     protected String judul;
     protected String penulis;
     protected int tahunTerbit;
     protected int halaman;
+    
 
     // Constructor
     public Buku(String idBuku, String judul, String penulis, int tahunTerbit) {
@@ -76,7 +77,7 @@ public class Buku {
         System.out.println("sedang membaca pada halaman:" + halaman);
     }
     
-    // Method untuk menampilkan informasi buku
+    // Method untuk menampilkan informasi buku (Override)
     public void tampilkanInfo() {
         System.out.println("-------------------------------");
         System.out.println("ID Buku      : " + this.idBuku);
@@ -85,6 +86,8 @@ public class Buku {
         System.out.println("Tahun Terbit : " + this.tahunTerbit);
         System.out.println("-------------------------------");
     }
+    
+    public abstract double hitungDenda(int hariTerlambat);
     
     public final void cetakStatusAset() {
         System.out.println("status aset: terdaftar sebagai koleksi perpustakaan");

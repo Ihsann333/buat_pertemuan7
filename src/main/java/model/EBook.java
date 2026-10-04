@@ -8,10 +8,12 @@ package model;
  *
  * @author loq
  */
-public class EBook extends Buku {
+public class EBook extends Buku implements DapatDiunduh{
         // Atribut khusus EBook
     private double ukuranFileMB;
     private String formatFile;
+    
+    private final int dendaPerHari = 1000;
 
     // Constructor Subclass
     public EBook(String idBuku, String judul, String penulis, int tahunTerbit, double ukuranFileMB, String formatFile) {
@@ -48,14 +50,13 @@ public class EBook extends Buku {
         }
     }
 
-    // Method khusus EBook (nama berbeda dari method di Buku,
-    public void tampilkanInfoEBook() {
-        System.out.println("------------------------------------------");
-        System.out.println("[KATEGORI: E-BOOK]");
-        super.tampilkanInfo();
-        System.out.println("Ukuran File  : " + ukuranFileMB + " MB");
-        System.out.println("Format File  : " + formatFile);
-        cetakStatusAset();
-        System.out.println("------------------------------------------");
+    @Override
+    public double hitungDenda(int hariTerlambat) {
+        return hariTerlambat * dendaPerHari;
+    }
+    
+    @Override
+    public void unduh() {
+        System.out.println("mengunduh e-book '" + getJudul() + "' (" + ukuranFileMB + "MB)...selesai");
     }
 }

@@ -11,6 +11,8 @@ package model;
 public class BukuCetak extends Buku {
     private int jumlahHalaman;
     private String lokasiRak;
+    private final double dendaCetak = 5000;
+    private double hariTerlambat;
     
     public BukuCetak(String idBuku, String judul, String penulis, int tahunTerbit, int jumlahHalaman, String lokasiRak) {
         super(idBuku, judul, penulis, tahunTerbit);
@@ -45,13 +47,9 @@ public class BukuCetak extends Buku {
             System.out.println(">> ERROR: Lokasi rak tidak boleh kosong!");
         }
     }
-    public void tampilkanInfoBukuCetak() {
-        System.out.println("------------------------------------------");
-        System.out.println("[KATEGORI: BUKU CETAK]");
-        super.tampilkanInfo();
-        System.out.println("Jml Halaman  : " + jumlahHalaman + " hlm");
-        System.out.println("Lokasi Rak   : " + lokasiRak);
-        cetakStatusAset();
-        System.out.println("------------------------------------------");
+    
+    @Override
+    public double hitungDenda(int hariTerlamabat) {
+        return hariTerlambat * dendaCetak;
     }
 }
